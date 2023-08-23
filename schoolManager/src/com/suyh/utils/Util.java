@@ -3,7 +3,11 @@ package com.suyh.utils;
 import com.suyh.bean.Person;
 import com.suyh.bean.Student;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Util {
     public static int sid = 0;
@@ -32,5 +36,28 @@ public class Util {
             System.out.println(s.getId()+"\t"+s.getName()+"\t"+s.getSex()+"\t"+s.getBirthday()+"\t\t\t"+s.getAge()+"\t"+s.description());
         }
         System.out.println("**************************");
+    }
+
+    public static int birthdayToAge(String birthday) {
+        int age = -1;
+        Calendar birCal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date birDate = null;
+        try {
+            birDate = sdf.parse(birthday);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        birCal.setTime(birDate);
+
+        Calendar nowCal = Calendar.getInstance();
+        if(birCal.before(nowCal)) {
+            age = nowCal.get(Calendar.YEAR) - birCal.get(Calendar.YEAR);
+            if((nowCal.get(Calendar.MONTH) < birCal.get(Calendar.MONTH)) || (nowCal.get(Calendar.MONTH) == birCal.get(Calendar.MONTH) &&
+                    nowCal.get(Calendar.DAY_OF_MONTH) < birCal.get(Calendar.DAY_OF_MONTH))) {
+                age--;
+            }
+        }
+        return age;
     }
 }

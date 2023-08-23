@@ -1,0 +1,34 @@
+{
+	isVisible:false,
+	name:"jubulei1",
+	desc:"local-1",
+	attrs: [
+		{
+			key:"member-0",
+			stateName:"membername-0",
+			stateType:"short",
+			stateDesc:"BeiZhu"
+		},
+	],
+	funcs: [
+		{
+			key:"0",
+			funcName:"getNodes",
+			funcType:"short",
+			funcParams: [
+				{
+					key:"param-0",
+					paramName:"x",
+					paramType:"short",
+					paramMode:"in",
+					paramDesc:"x坐标",
+				},
+			],
+			isParamVisible:false,
+			isChecked:false,
+			funcErr:"test",
+			funcSingle:"test",
+			funcDesc:"这是第一条备注",
+		},
+	],
+}
